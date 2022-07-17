@@ -59,6 +59,20 @@ const useStyles = makeStyles((theme) => ({
 
 const Auth: React.FC = () => {
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isLogin, setIsLogin] = useState(true);
+
+  // signInするための関数
+  const signInEmail = async () => {
+    await auth.signInWithEmailAndPassword(email, password);
+  };
+
+  // 新規でユーザーを作成するときに呼び出す関数
+  const signUpEmail = async () => {
+    await auth.createUserWithEmailAndPassword(email, password);
+  };
+
   const signInGoogle = async () => {
     await auth.signInWithPopup(provider).catch((err) => alert(err.message));
   };
